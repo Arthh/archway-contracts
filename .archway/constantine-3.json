@@ -1,35 +1,23 @@
 {
   "deployments": [
     {
-      "action": "instantiate",
-      "txhash": "F4DFEC2DC92D07E0D4C36076C965DA55D7DF4B05FB315520291D6B1B78373CFB",
+      "action": "store",
+      "txhash": "F92BFA3967DB5C2CEBE7483EE14412218B075FB8897297E65B5F4BB812913BBA",
       "wasm": {
-        "codeId": 2911
+        "codeId": 2917,
+        "checksum": "bbf2ab32cb07dfc9eb3eb15846857ec8c2b177925c17d6658aca4cb1f2cd33e2"
       },
       "contract": {
         "name": "loan",
-        "version": "0.1.0",
-        "address": "archway1veavffh3wny907vkld6ffl09y52ya7my56rm5nqc6cm9svdq4ccsaf4yp5",
-        "admin": "archway1w2x8d67gkkmunws3hvuu20j3e0hqtwafls3m6p"
-      },
-      "msg": {
-        "name": "MyToken",
-        "symbol": "MTK",
-        "decimals": 6,
-        "initial_balances": [
-          {
-            "address": "archway1w2x8d67gkkmunws3hvuu20j3e0hqtwafls3m6p",
-            "amount": "1000000"
-          }
-        ]
+        "version": "0.1.0"
       }
     },
     {
       "action": "store",
-      "txhash": "268DFF886FD7CDD3296CBF58C38800C5DA35308B948C901022AD850A64E5164F",
+      "txhash": "C043985C4BC97FD3315B5CD02C4FEA177B9B2688E5FDAF981897A1D84B4FB615",
       "wasm": {
-        "codeId": 2911,
-        "checksum": "3187be1e3ff2d472e55afb5cd2687fa41f374eb35aee4ab4d23a72eb042d4137"
+        "codeId": 2916,
+        "checksum": "bbf2ab32cb07dfc9eb3eb15846857ec8c2b177925c17d6658aca4cb1f2cd33e2"
       },
       "contract": {
         "name": "loan",

@@ -5,16 +5,24 @@
     {
       "type": "object",
       "required": [
-        "Deposit"
+        "DepositCollateral"
       ],
       "properties": {
-        "Deposit": {
+        "DepositCollateral": {
           "type": "object",
           "required": [
-            "amount"
+            "amount",
+            "token",
+            "valuation"
           ],
           "properties": {
             "amount": {
+              "$ref": "#/definitions/Uint128"
+            },
+            "token": {
+              "type": "string"
+            },
+            "valuation": {
               "$ref": "#/definitions/Uint128"
             }
           }
@@ -25,17 +33,49 @@
     {
       "type": "object",
       "required": [
-        "Withdraw"
+        "AdjustValuation"
       ],
       "properties": {
-        "Withdraw": {
+        "AdjustValuation": {
           "type": "object",
           "required": [
-            "amount"
+            "new_valuation"
           ],
           "properties": {
-            "amount": {
+            "new_valuation": {
               "$ref": "#/definitions/Uint128"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "PayTax"
+      ],
+      "properties": {
+        "PayTax": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "LiquidateCollateral"
+      ],
+      "properties": {
+        "LiquidateCollateral": {
+          "type": "object",
+          "required": [
+            "collateral_id"
+          ],
+          "properties": {
+            "collateral_id": {
+              "type": "string"
             }
           }
         }

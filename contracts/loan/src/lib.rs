@@ -1,9 +1,10 @@
 use cosmwasm_std::{entry_point, DepsMut, Env, MessageInfo, Response, StdResult};
 mod contract;
 pub mod msg;
+pub mod state;
 
-use contract::{deposit, withdraw, instantiate as contract_instantiate};
-use msg::{InstantiateMsg, ExecuteMsg, DepositMsg, WithdrawMsg};
+use contract::{instantiate as contract_instantiate, execute as contract_execute};
+use msg::{InstantiateMsg, ExecuteMsg};
 
 #[entry_point]
 pub fn instantiate(
@@ -22,8 +23,5 @@ pub fn execute(
     info: MessageInfo,
     msg: ExecuteMsg,
 ) -> StdResult<Response> {
-    match msg {
-        ExecuteMsg::Deposit { amount } => deposit(deps, env, info, DepositMsg { amount }),
-        ExecuteMsg::Withdraw { amount } => withdraw(deps, env, info, WithdrawMsg { amount }),
-    }
+    contract_execute(deps, env, info, msg)
 }

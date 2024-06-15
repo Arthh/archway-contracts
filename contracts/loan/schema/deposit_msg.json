@@ -3,10 +3,18 @@
   "title": "DepositMsg",
   "type": "object",
   "required": [
-    "amount"
+    "amount",
+    "token",
+    "valuation"
   ],
   "properties": {
     "amount": {
+      "$ref": "#/definitions/Uint128"
+    },
+    "token": {
+      "type": "string"
+    },
+    "valuation": {
       "$ref": "#/definitions/Uint128"
     }
   },
