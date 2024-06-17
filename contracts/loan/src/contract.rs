@@ -1,33 +1,37 @@
 use cosmwasm_std::{
-    to_json_binary, BankMsg, Coin, DepsMut, Env, MessageInfo, Response, StdResult, Uint128, WasmMsg,
+    to_json_binary, entry_point, BankMsg, Coin, DepsMut, Env, MessageInfo, Response, StdResult, Uint128, WasmMsg,
 };
 use crate::msg::{ExecuteMsg, InstantiateMsg};
 use crate::state::{Collateral, CollateralState, COLLATERAL_STATE};
 use cw20::Cw20ExecuteMsg;
+use crate::ContractError;
 
+#[cfg_attr(not(feature = "library"), entry_point)]
 pub fn instantiate(
     deps: DepsMut,
     _env: Env,
     _info: MessageInfo,
     msg: InstantiateMsg,
-) -> StdResult<Response> {
+) -> Result<Response, ContractError> {
     let state = CollateralState {
         collaterals: vec![],
         name: msg.name,
         symbol: msg.symbol,
         tax_rate: msg.tax_rate,
     };
+
     COLLATERAL_STATE.save(deps.storage, &state)?;
 
     Ok(Response::new().add_attribute("method", "instantiate"))
 }
 
+#[cfg_attr(not(feature = "library"), entry_point)]
 pub fn execute(
     deps: DepsMut,
     env: Env,
     info: MessageInfo,
     msg: ExecuteMsg,
-) -> StdResult<Response> {
+) -> Result<Response, ContractError> {
     match msg {
         ExecuteMsg::DepositCollateral { token, amount, valuation } => {
             deposit_collateral(deps, env, info, token, amount, valuation)
@@ -47,7 +51,7 @@ fn deposit_collateral(
     token: String,
     amount: Uint128,
     valuation: Uint128,
-) -> StdResult<Response> {
+) -> Result<Response, ContractError> {
     let collateral_id = format!("{}-{}", env.block.height, info.sender); // Create a unique ID
 
     let collateral = Collateral {
@@ -104,7 +108,7 @@ fn adjust_valuation(
     deps: DepsMut,
     info: MessageInfo,
     new_valuation: Uint128,
-) -> StdResult<Response> {
+) -> Result<Response, ContractError> {
     COLLATERAL_STATE.update(deps.storage, |mut state| -> StdResult<_> {
         for collateral in &mut state.collaterals {
             if collateral.borrower == info.sender {
@@ -122,7 +126,7 @@ fn pay_tax(
     deps: DepsMut,
     env: Env,
     info: MessageInfo,
-) -> StdResult<Response> {
+) -> Result<Response, ContractError> {
     COLLATERAL_STATE.update(deps.storage, |mut state| -> StdResult<_> {
         for collateral in &mut state.collaterals {
             if collateral.borrower == info.sender {
@@ -143,7 +147,7 @@ fn liquidate_collateral(
     deps: DepsMut,
     info: MessageInfo,
     collateral_id: String,
-) -> StdResult<Response> {
+) -> Result<Response, ContractError> {
     let response = COLLATERAL_STATE.update(deps.storage, |mut state| -> StdResult<CollateralState> {
         if let Some(index) = state.collaterals.iter().position(|c| c.id == collateral_id) {
             let collateral = state.collaterals.remove(index);

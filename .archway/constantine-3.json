@@ -2,6 +2,66 @@
   "deployments": [
     {
       "action": "store",
+      "txhash": "801EE3540517880AB20758B2DE61C7CF60A5C9F65FDA698A599DA1ED3980E428",
+      "wasm": {
+        "codeId": 2952,
+        "checksum": "63112a8809502a350893b98e23165ab8657799f00bf2d8861c79948d3d5f14a0"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "C2218A315D2B9207B8030FD4A57A66F748C26F64AA1B794479E5EB529071287E",
+      "wasm": {
+        "codeId": 2951,
+        "checksum": "2d7fb99b269a140b9c966d72c0a4c58aca1b182e72946121ffac31d70f68b028"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "A27111ED9A5FC5F13359AA52F0B9E5434B7D9288A70E1F1E74E2C655C5DDDF84",
+      "wasm": {
+        "codeId": 2945,
+        "checksum": "bbf2ab32cb07dfc9eb3eb15846857ec8c2b177925c17d6658aca4cb1f2cd33e2"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "39313D6172A4CFCA47C9D42317A85CCD9D23B67E62E738D88C29180A81FBF026",
+      "wasm": {
+        "codeId": 2944,
+        "checksum": "bbf2ab32cb07dfc9eb3eb15846857ec8c2b177925c17d6658aca4cb1f2cd33e2"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "CE15D64C01E99B9A3E768CD697A46EBDF847D86371ECDCEEDA2DAD20B742434F",
+      "wasm": {
+        "codeId": 2943,
+        "checksum": "bbf2ab32cb07dfc9eb3eb15846857ec8c2b177925c17d6658aca4cb1f2cd33e2"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
       "txhash": "C09A5D5F39D941D2560E0E528FFF6EB9F0945D987C878249E22D0F0C05DADEC2",
       "wasm": {
         "codeId": 2937,
