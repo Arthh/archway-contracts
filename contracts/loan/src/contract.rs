@@ -4,7 +4,7 @@ use cosmwasm_std::{
     to_binary, BankMsg, Coin, DepsMut, Env, MessageInfo, Response, StdResult, Uint128, WasmMsg,
 };
 use crate::msg::{ExecuteMsg, InstantiateMsg};
-use crate::state::{Collateral, CollateralState, COLLATERAL_STATE};
+use crate::state::{Config, CONFIG, COLLATERAL_STATE, Collateral, CollateralState};
 use cw20::Cw20ExecuteMsg;
 use crate::ContractError;
 use cw2::set_contract_version;
@@ -21,15 +21,19 @@ pub fn instantiate(
 ) -> Result<Response, ContractError> {
     set_contract_version(deps.storage, CONTRACT_NAME, CONTRACT_VERSION)?;
 
-    let state = CollateralState {
-        collaterals: vec![],
-        name: msg.name,
-        symbol: msg.symbol,
-        tax_rate: msg.tax_rate,
-    };
-    COLLATERAL_STATE.save(deps.storage, &state)?;
+    let owner = msg
+        .owner
+        .and_then(|addr_string| deps.api.addr_validate(addr_string.as_str()).ok())
+        .unwrap_or(info.sender);
 
-    Ok(Response::new().add_attribute("method", "instantiate"))
+    let config = Config {
+        owner: owner.clone(),
+    };
+
+    CONFIG.save(deps.storage, &config)?;
+    Ok(Response::new()
+        .add_attribute("method", "instantiate")
+        .add_attribute("owner", owner))
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]

@@ -1,9 +1,15 @@
 use cosmwasm_std::{Addr, Uint128};
+use cosmwasm_schema::cw_serde;
 use cw_storage_plus::Item;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[cw_serde]
+pub struct Config {
+    pub owner: Addr,
+}
+
+#[cw_serde]
 pub struct CollateralState {
     pub collaterals: Vec<Collateral>,
     pub name: String,
@@ -11,7 +17,7 @@ pub struct CollateralState {
     pub tax_rate: f64,
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[cw_serde]
 pub struct Collateral {
     pub id: String,
     pub token: String,
@@ -21,4 +27,6 @@ pub struct Collateral {
     pub borrower: Addr,
 }
 
+
+pub const CONFIG: Item<Config> = Item::new("config");
 pub const COLLATERAL_STATE: Item<CollateralState> = Item::new("collateral_state");

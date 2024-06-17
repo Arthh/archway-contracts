@@ -1,6 +1,82 @@
 {
   "deployments": [
     {
+      "action": "instantiate",
+      "txhash": "7AC7DE53AFB2BF452005992D7ECCAA4DA57BDCA6CB4E731B8AA4C06849B1BD70",
+      "wasm": {
+        "codeId": 2957
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0",
+        "address": "archway1z9qfwwqfghx33czs3v6qeryd7sm06zl2649u4tn587mquq0ynpuq4lzqcm",
+        "admin": "archway1w2x8d67gkkmunws3hvuu20j3e0hqtwafls3m6p"
+      },
+      "msg": {}
+    },
+    {
+      "action": "store",
+      "txhash": "4FD992048001DA3745328683CAFBC0CD7B9E6D53B27C05D4581203DE9634AAA3",
+      "wasm": {
+        "codeId": 2957,
+        "checksum": "372cd8acc23cb116adb0ab067fd6cb6a2f43fb0bd1aceb1dbc9b4b9afcb5925b"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "78B716D26C17FF5D6B6FC681536EF1EC4F9E6F6B1A64177C6ECB2ADC5BC74BD3",
+      "wasm": {
+        "codeId": 2956,
+        "checksum": "8a95f6a35d694d349f15f7feb3180832501fc3c1ae61971742f9603715c1271e"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "52EEF0585986CEB1CDB1D51B4A0347484DC0884EA9B9015707EDF6CF72EB8871",
+      "wasm": {
+        "codeId": 2955,
+        "checksum": "8a95f6a35d694d349f15f7feb3180832501fc3c1ae61971742f9603715c1271e"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "instantiate",
+      "txhash": "FE3D03A8E4CF9B81F790BA7624B0E8BAF6520865D1898B002808A1B7F75E4AAD",
+      "wasm": {
+        "codeId": 2954
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0",
+        "address": "archway1v5d8yqqzdtx8yfnsy8xm52zce3q2884xclum4l0kp7pmc4a4tsfsc2lllf",
+        "admin": "archway1w2x8d67gkkmunws3hvuu20j3e0hqtwafls3m6p"
+      },
+      "msg": {}
+    },
+    {
+      "action": "store",
+      "txhash": "8DCF18E9EA4B7031EE498EDE1C9AD374F0359BCEE601B61DA537CD10D9496E41",
+      "wasm": {
+        "codeId": 2954,
+        "checksum": "79c2fe6f06c1601035fa2dfc4fba0c1652516c776e200b3275414be1c017e3b2"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
       "action": "store",
       "txhash": "5E6310F962C93D5A5B2C1BE29173B00035BBF65A76CD1C2A53B3B9BCD15B7496",
       "wasm": {

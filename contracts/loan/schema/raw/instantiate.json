@@ -2,21 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "InstantiateMsg",
   "type": "object",
-  "required": [
-    "name",
-    "symbol",
-    "tax_rate"
-  ],
   "properties": {
-    "name": {
-      "type": "string"
-    },
-    "symbol": {
-      "type": "string"
-    },
-    "tax_rate": {
-      "type": "number",
-      "format": "double"
+    "owner": {
+      "type": [
+        "string",
+        "null"
+      ]
     }
   }
 }
