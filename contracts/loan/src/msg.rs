@@ -1,4 +1,4 @@
-use cosmwasm_std::{Uint128};
+use cosmwasm_std::Uint128;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -15,18 +15,6 @@ pub enum ExecuteMsg {
     AdjustValuation { new_valuation: Uint128 },
     PayTax {},
     LiquidateCollateral { collateral_id: String },
-}
-
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct DepositMsg {
-    pub token: String,
-    pub amount: Uint128,
-    pub valuation: Uint128,
-}
-
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct WithdrawMsg {
-    pub amount: Uint128,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
