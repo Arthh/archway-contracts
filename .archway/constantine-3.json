@@ -2,6 +2,18 @@
   "deployments": [
     {
       "action": "store",
+      "txhash": "C09A5D5F39D941D2560E0E528FFF6EB9F0945D987C878249E22D0F0C05DADEC2",
+      "wasm": {
+        "codeId": 2937,
+        "checksum": "bbf2ab32cb07dfc9eb3eb15846857ec8c2b177925c17d6658aca4cb1f2cd33e2"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
       "txhash": "F92BFA3967DB5C2CEBE7483EE14412218B075FB8897297E65B5F4BB812913BBA",
       "wasm": {
         "codeId": 2917,
