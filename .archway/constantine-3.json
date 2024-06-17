@@ -2,6 +2,166 @@
   "deployments": [
     {
       "action": "instantiate",
+      "txhash": "1CE04E9118F0837D30EA805F05DECB872996F99FAF8C5937E902A0910C8A3E42",
+      "wasm": {
+        "codeId": 2968
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0",
+        "address": "archway1xxtqu4sdnx74tjxm63jqp73lqeg86aphtvhdtmck2ny2ku3w8nhseq6k7h",
+        "admin": "archway1w2x8d67gkkmunws3hvuu20j3e0hqtwafls3m6p"
+      },
+      "msg": {}
+    },
+    {
+      "action": "store",
+      "txhash": "99EDE5CF92DF323536C62ACA6D42E3AF1230BB06194C6B6D2A7BBB2034C9CEE1",
+      "wasm": {
+        "codeId": 2968,
+        "checksum": "270a5bbcdab74a8ce02f3a100a4a344cfdff432de7f44a02c5a5b7bbdc1459a9"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "096D2BD178B728D88081B596FA7FA5272F178AA2E06FA433ABC9B84C3AB3EA6B",
+      "wasm": {
+        "codeId": 2967,
+        "checksum": "10dc9f852984334d14af60dc7f0acb8a008c615176c95505b9f2068ff1c651b1"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "5D02642123BBED3FCBA1B6F12D923DE4B8DCD445B7985F99E423472350A80150",
+      "wasm": {
+        "codeId": 2966,
+        "checksum": "48077fb19a7b9133af351b7cbed9f7c40ebf66feaa53442fc8ba2e6cf34a890a"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "F4FCECAF8629B0EE373BDD951D116EFFC16B810CA7DB7ADCA87D2DA92B93BEFA",
+      "wasm": {
+        "codeId": 2965,
+        "checksum": "97e7c95333d7322994eadb66364626ca409b3f0bf100764910ee69d66fa40303"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "6F891ECCC2F3F960F60EECC86D15BD7654599C5C556C562CDD5957B68578182F",
+      "wasm": {
+        "codeId": 2964,
+        "checksum": "839810048d54224240f47078d5811d67c3d60ddcbb5817f38bbdc644e33326cb"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "instantiate",
+      "txhash": "EEE17E13AC32A8C48BE408BFFBB61E385806DACA00447FE13887BAC39D9C5676",
+      "wasm": {
+        "codeId": 2963
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0",
+        "address": "archway1mz7vvwtuk0etsmc3sjqdjut5vahvh8jlg5mt2dw2wpxtnt0r5grqmnk3d4",
+        "admin": "archway1w2x8d67gkkmunws3hvuu20j3e0hqtwafls3m6p"
+      },
+      "msg": {}
+    },
+    {
+      "action": "store",
+      "txhash": "1C1170BC3B7F7A27783AAACB5BDD2779C65F4DB36FB74AB647355C916DEC2D79",
+      "wasm": {
+        "codeId": 2963,
+        "checksum": "0980367cbd763265adc225002993dc400a2864bd0d51d644233de471e7909dc9"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "5221C1B2E7087A169C92811A7D0EF6782452B4998C32F98F594BE7ABB32C0858",
+      "wasm": {
+        "codeId": 2962,
+        "checksum": "f0467cc5a98bf2deef75224c76195517128a5ce94bd673fb8c86dd935bf7882f"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "691920577EFAAB3BA9C4BB003E236607DE2A916C11DE03137A405F897C880314",
+      "wasm": {
+        "codeId": 2961,
+        "checksum": "ad78c865ef9748a956441cf40057de2ea088ad9934542f353fd37dab19dd5d81"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "08DBCC86353701B9DFD9D6585E51A52182342B19B2A9D2181EB862CB9EDFE26B",
+      "wasm": {
+        "codeId": 2960,
+        "checksum": "ad78c865ef9748a956441cf40057de2ea088ad9934542f353fd37dab19dd5d81"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "C7E55F973D9287B06F217EE264D96498D218EB8F5FA9DCD97A5C4A085644C52D",
+      "wasm": {
+        "codeId": 2959,
+        "checksum": "8a33b5247eda9e7e6bb8371bc2509e5e31c977d52c14e2720b676ccee85e008a"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "store",
+      "txhash": "3ACC8C9E0F75FBD78FE1F0E02B1EB8B6061AF6EA11BEB0761F7149ECB495ED67",
+      "wasm": {
+        "codeId": 2958,
+        "checksum": "951adab23cec2201299f69e25a6f0bb132cbe463279025384ac5e22a165c070b"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "instantiate",
       "txhash": "7AC7DE53AFB2BF452005992D7ECCAA4DA57BDCA6CB4E731B8AA4C06849B1BD70",
       "wasm": {
         "codeId": 2957

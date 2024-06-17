@@ -1,13 +1,12 @@
-use cosmwasm_std::Uint128;
-use schemars::JsonSchema;
-use serde::{Deserialize, Serialize};
+use cosmwasm_schema::{cw_serde, QueryResponses};
+use cosmwasm_std::{Uint128};
 
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[cw_serde]
 pub struct InstantiateMsg {
     pub owner: Option<String>,
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[cw_serde]
 pub enum ExecuteMsg {
     DepositCollateral { token: String, amount: Uint128, valuation: Uint128 },
     AdjustValuation { new_valuation: Uint128 },
@@ -15,7 +14,19 @@ pub enum ExecuteMsg {
     LiquidateCollateral { collateral_id: String },
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[cw_serde]
+pub struct DepositMsg {
+    pub token: String,
+    pub amount: Uint128,
+    pub valuation: Uint128,
+}
+
+#[cw_serde]
+pub struct WithdrawMsg {
+    pub amount: Uint128,
+}
+
+#[cw_serde]
 pub struct QueryMsg {
     pub collateral_id: u64,
 }
