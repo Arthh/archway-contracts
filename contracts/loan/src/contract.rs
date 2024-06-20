@@ -1,7 +1,7 @@
 #[cfg(not(feature = "library"))]
 use cosmwasm_std::entry_point;
 use cosmwasm_std::{
-    to_json_binary, BankMsg, Coin, DepsMut, Env, MessageInfo, Response, StdResult, Uint128, WasmMsg,
+    to_json_binary, BankMsg, Coin, DepsMut, Env, MessageInfo, Response, StdResult, Uint128, WasmMsg,StdError
 };
 use crate::msg::{ExecuteMsg, InstantiateMsg};
 use crate::state::{Config, CONFIG, COLLATERAL_STATE, Collateral};
@@ -11,12 +11,11 @@ use cw2::set_contract_version;
 
 const CONTRACT_NAME: &str = "crates.io:loan-contract";
 const CONTRACT_VERSION: &str = env!("CARGO_PKG_VERSION");
-const TAX_RATE: f64 = 1.5; // Hardcoded tax rate of 1.5%
 
 #[cfg_attr(not(feature = "library"), entry_point)]
 pub fn instantiate(
     deps: DepsMut,
-    _env: Env,
+    env: Env,
     info: MessageInfo,
     msg: InstantiateMsg,
 ) -> Result<Response, ContractError> {
@@ -30,12 +29,11 @@ pub fn instantiate(
     let config = Config {
         owner: owner.clone(),
     };
-    CONFIG.save(deps.storage, &config)?;
 
+    CONFIG.save(deps.storage, &config)?;
     Ok(Response::new()
         .add_attribute("method", "instantiate")
-        .add_attribute("owner", owner)
-        .add_attribute("tax_rate", TAX_RATE.to_string()))
+        .add_attribute("owner", owner))
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
@@ -46,8 +44,8 @@ pub fn execute(
     msg: ExecuteMsg,
 ) -> Result<Response, ContractError> {
     match msg {
-        ExecuteMsg::DepositCollateral { token, amount, valuation } => {
-            Ok(deposit_collateral(deps, env, info, token, amount, valuation)?)
+        ExecuteMsg::DepositCollateral { amount, valuation } => {
+            Ok(deposit_collateral(deps, env, info, amount, valuation)?)
         }
         ExecuteMsg::AdjustValuation { new_valuation } => Ok(adjust_valuation(deps, info, new_valuation)?),
         ExecuteMsg::PayTax {} => Ok(pay_tax(deps, env, info)?),
@@ -59,7 +57,6 @@ fn deposit_collateral(
     deps: DepsMut,
     env: Env,
     info: MessageInfo,
-    token: String,
     amount: Uint128,
     valuation: Uint128,
 ) -> StdResult<Response> {
@@ -67,7 +64,7 @@ fn deposit_collateral(
 
     let collateral = Collateral {
         id: collateral_id.clone(),
-        token: token.clone(),
+        token: "CONST".to_string(), // Hardcoded to only accept CONST
         amount,
         valuation,
         last_tax_payment: env.block.time.seconds(),
@@ -77,12 +74,16 @@ fn deposit_collateral(
     // Save the collateral into the state
     COLLATERAL_STATE.save(deps.storage, &collateral_id, &collateral)?;
 
-    // Handle native tokens
-    if info.funds.iter().any(|coin| coin.denom == token) {
+    // Handle CONST tokens
+    if let Some(fund) = info.funds.iter().find(|coin| coin.denom == "CONST") {
+        if fund.amount < amount {
+            return Err(StdError::generic_err("Insufficient CONST tokens sent"));
+        }
+
         let transfer_msg = BankMsg::Send {
             to_address: env.contract.address.to_string(),
             amount: vec![Coin {
-                denom: token.clone(),
+                denom: "CONST".to_string(),
                 amount,
             }],
         };
@@ -91,22 +92,9 @@ fn deposit_collateral(
             .add_message(transfer_msg)
             .add_attribute("method", "deposit_collateral")
             .add_attribute("collateral_id", collateral_id));
+    } else {
+        return Err(StdError::generic_err("No CONST tokens sent"));
     }
-
-    // Handle CW20 tokens
-    let transfer_msg = WasmMsg::Execute {
-        contract_addr: token.clone(),
-        msg: to_json_binary(&Cw20ExecuteMsg::Transfer {
-            recipient: env.contract.address.to_string(),
-            amount,
-        })?,
-        funds: vec![],
-    };
-
-    Ok(Response::new()
-        .add_message(transfer_msg)
-        .add_attribute("method", "deposit_collateral")
-        .add_attribute("collateral_id", collateral_id))
 }
 
 fn adjust_valuation(
@@ -127,35 +115,15 @@ fn pay_tax(
     info: MessageInfo,
 ) -> StdResult<Response> {
     let mut collateral = COLLATERAL_STATE.load(deps.storage, &info.sender.to_string())?;
-    
     let elapsed_time = env.block.time.seconds() - collateral.last_tax_payment;
-    
-    let tax_due = Uint128::from(collateral.valuation.u128() * elapsed_time as u128 * TAX_RATE as u128 / 10000);
-    
-    let borrower_balance = deps.querier.query_balance(&info.sender, &collateral.token)?;
-    
-    if borrower_balance.amount < tax_due {
-        return Err(StdError::generic_err("Insufficient funds to pay tax"));
-    }
-    
-    let tax_payment = BankMsg::Send {
-        to_address: env.contract.address.to_string(),
-        amount: vec![Coin {
-            denom: collateral.token.clone(),
-            amount: tax_due,
-        }],
-    };
-    
+    let config = CONFIG.load(deps.storage)?;
+    // let tax_due = collateral.valuation.u128() * elapsed_time as u128 * config.tax_rate as u128 / 10000; // Simplified tax calculation
+    // Logic to deduct tax from borrower
     collateral.last_tax_payment = env.block.time.seconds();
-    
     COLLATERAL_STATE.save(deps.storage, &info.sender.to_string(), &collateral)?;
-    
-    Ok(Response::new()
-        .add_message(tax_payment)
-        .add_attribute("method", "pay_tax")
-        .add_attribute("tax_due", tax_due.to_string()))
-}
 
+    Ok(Response::new().add_attribute("method", "pay_tax"))
+}
 
 fn liquidate_collateral(
     deps: DepsMut,

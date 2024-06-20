@@ -12,15 +12,11 @@
           "type": "object",
           "required": [
             "amount",
-            "token",
             "valuation"
           ],
           "properties": {
             "amount": {
               "$ref": "#/definitions/Uint128"
-            },
-            "token": {
-              "type": "string"
             },
             "valuation": {
               "$ref": "#/definitions/Uint128"

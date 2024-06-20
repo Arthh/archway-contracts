@@ -2,6 +2,58 @@
   "deployments": [
     {
       "action": "instantiate",
+      "txhash": "455469877FCA4338969358D0341EAFF807BC28AFF25933CD6410BBE3A6021789",
+      "wasm": {
+        "codeId": 3014
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0",
+        "address": "archway1ph6mmntjngmjpdemzne33mwj084jxmvp3xqcpx9dk8hc4459dm8s3k4pqa",
+        "admin": "archway1w2x8d67gkkmunws3hvuu20j3e0hqtwafls3m6p"
+      },
+      "msg": {}
+    },
+    {
+      "action": "store",
+      "txhash": "0DFD6ED3BF931A791954870CD51C75388809F7DA14FF8F30F465C4CBE8C25568",
+      "wasm": {
+        "codeId": 3014,
+        "checksum": "33964d750a7c1e34cca831b89ec4d891cef0c6f8be7c5eb3f20c09c5f7aaa11a"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "instantiate",
+      "txhash": "BA2ED0FC119BEC8A658F1A992CE6D5BA91DE25EC480C16747B49560BFA256718",
+      "wasm": {
+        "codeId": 3013
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0",
+        "address": "archway1vdnkfqlegma948y4jrvy7jhq5vjxp97gxyjhxwzx75cp9djzxjss8ywh2a",
+        "admin": "archway1w2x8d67gkkmunws3hvuu20j3e0hqtwafls3m6p"
+      },
+      "msg": {}
+    },
+    {
+      "action": "store",
+      "txhash": "4F67F96B20A2C22CE304214E34261AF266B8521F72F99EF8205E7E08BCA4E1BF",
+      "wasm": {
+        "codeId": 3013,
+        "checksum": "48fc1c7f28090ba141e2f60fa52c04c18836dbdf30c934a8ae1146fdca4a95f5"
+      },
+      "contract": {
+        "name": "loan",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "action": "instantiate",
       "txhash": "1CE04E9118F0837D30EA805F05DECB872996F99FAF8C5937E902A0910C8A3E42",
       "wasm": {
         "codeId": 2968

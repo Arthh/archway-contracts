@@ -8,7 +8,7 @@ pub struct InstantiateMsg {
 
 #[cw_serde]
 pub enum ExecuteMsg {
-    DepositCollateral { token: String, amount: Uint128, valuation: Uint128 },
+    DepositCollateral { amount: Uint128, valuation: Uint128 },
     AdjustValuation { new_valuation: Uint128 },
     PayTax {},
     LiquidateCollateral { collateral_id: String },
@@ -16,7 +16,6 @@ pub enum ExecuteMsg {
 
 #[cw_serde]
 pub struct DepositMsg {
-    pub token: String,
     pub amount: Uint128,
     pub valuation: Uint128,
 }
